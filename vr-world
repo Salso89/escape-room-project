@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Textures - A-Frame School</title>
+    <meta name="description" content="Textures - A-Frame School" />
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-outline@%5E1.1.0/build/aframe-outline.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
+     <script src="https://rawgit.com/dmarcos/aframe-motion-capture/master/dist/aframe-motion-capture-components.min.js"></script>
+    <script src="https://unpkg.com/aframe-controller-cursor-component@0.2.3/dist/aframe-controller-cursor-component.min.js"></script>
+    <script src="myfont.typeface.js"></script>
+    <script src="displacement-shader.js"></script>
+
+  </head>
+
+  <body>
+    <a-scene>
+      <a-sky
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/fantasy_lands_i_want_a_vast_landscape_in_the_cloud%20(1).jpg?v=1687618347440"
+      ></a-sky>
+
+      <a-entity particle-system="preset: snow; particleCount: 10000"></a-entity>
+      
+      <!-- Hands -->
+      <a-entity id="left" hand-controls="left"></a-entity>
+      <a-entity id="right" hand-controls="right"></a-entity>
+      
+      <!-- Object used from A-frame tutorial explaining materials, sphere was created using default primitive 
+          type then it has been wrapped in a separate entity so that movement could be applied-->
+      
+      <a-entity id="lightSphere" position="3.5 0.5 -6"
+               animation="property: position; to: -3.5 0.5 -6; dir: alternate; loop: true; dur: 10000">
+       <a-sphere material="shader:displacement"
+                scale="8 8 8"
+                radius="0.2"
+                position="0 1.5 -1.5"
+                segments-height="128"
+                segments-width="128">
+        <a-animation attribute="scale" direction="alternate-reverse" dur="5000" from="1 1 1" to="4 4 4" repeat="indefinite"></a-animation>
+      </a-sphere>
+      </a-entity>
+
+      <!-- Image assets used for box animations-->
+      
+      <a-assets>
+        <img
+          id="textureImage"
+          src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/apisjjpds__35490.jpg?v=1687802382531"
+        />
+        <img
+          id="textureImage1"
+          src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        />
+        <img
+          id="textureImage2"
+          src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/sadface-removebg-preview.png?v=1687891181035"
+        />
+        <img
+          id="textureImage3"
+          src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/lamp.png.png?v=1687969576958"
+        />
+        <img
+          id="textureImage4"
+          src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/candle.png?v=1687968712916"
+        />
+        <img
+          id="textureImage5"
+          src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/fire.png?v=1687969702138"
+        />
+        <img
+          id="textureImage6"
+          src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/torch.png?v=1687972854525"
+        />
+        <img
+          id="textureImage7"
+          src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/match?v=1687973154814"
+        />
+      </a-assets>
+
+      
+      
+      <!--Building fences to surround the plane-->
+
+      <a-box
+        src="https://cdn.glitch.me/4021f23f-957c-4f08-9605-77e08afcbc5b/Country%2002.png?v=1687619672786"
+        position="4.5 0.3 0"
+        scale="0.4 -0.4 19"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.me/4021f23f-957c-4f08-9605-77e08afcbc5b/Country%2002.png?v=1687619672786"
+        position="4.5 1 0"
+        scale="0.4 -0.4 19"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.me/4021f23f-957c-4f08-9605-77e08afcbc5b/Country%2002.png?v=1687619672786"
+        position="-4.5 0.3 0"
+        scale="0.4 -0.4 19"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.me/4021f23f-957c-4f08-9605-77e08afcbc5b/Country%2002.png?v=1687619672786"
+        position="-4.5 1 0"
+        scale="0.4 -0.4 19"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.me/4021f23f-957c-4f08-9605-77e08afcbc5b/Country%2002.png?v=1687619672786"
+        position="0 1 -9.5"
+        rotation="0 270 0"
+        scale="0.4 -0.4 9"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.me/4021f23f-957c-4f08-9605-77e08afcbc5b/Country%2002.png?v=1687619672786"
+        position="0 0.3 -9.5"
+        rotation="0 270 0"
+        scale="0.4 -0.4 9"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.me/4021f23f-957c-4f08-9605-77e08afcbc5b/Country%2002.png?v=1687619672786"
+        position="0 1 9.5"
+        rotation="0 270 0"
+        scale="0.4 -0.4 9"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.me/4021f23f-957c-4f08-9605-77e08afcbc5b/Country%2002.png?v=1687619672786"
+        position="0 0.3 9.5"
+        rotation="0 270 0"
+        scale="0.4 -0.4 9"
+      ></a-box>
+
+      
+      <!--Box animations that hold possible anwers to the riddle question. The first box below being the correct answer-->
+      <!--The box with the correct answer will hold an enlarged morse code chart that the user can read-->
+
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="0 5 5"
+        event-set__click="material.color: white; scale: 4 4.5 2; material.src: #textureImage"
+        event-set__mouseenter="material.color: white; material.src: #textureImage3"
+        event-set__mouseleave="material.src: #textureImage"
+        animation="property: rotation; to: 0 360 0; easing: linear; loop: true; dur: 20000"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="0 3.5 9"
+        event-set__click="material.color: white; scale: 1 1 1; material.src: #textureImage2"
+        event-set__mouseenter="material.color: white; material.src: #textureImage4"
+        event-set__mouseleave="material.src: #textureImage1"
+        animation="property: rotation; to: 360 360 0; easing: linear; loop: true; dur: 10000"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="0 1 4"
+        event-set__click="material.color: white; scale: 1 1 1; material.src: #textureImage2"
+        event-set__mouseenter="material.color: white; material.src: #textureImage5"
+        event-set__mouseleave="material.src: #textureImage1"
+        animation="property: rotation; to: 360 360 0; easing: linear; loop: true; dur: 9000"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="3.5 4 5.5"
+        event-set__click="material.color: white; scale: 1 1 1; material.src: #textureImage2"
+        animation="property: rotation; to: 360 360 0; easing: linear; loop: true; dur: 10000"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="3 2.2 5.5"
+        event-set__click="material.color: white; scale: 1 1 1; material.src: #textureImage2"
+              event-set__mouseenter="material.color: white; material.src: #textureImage7"
+        event-set__mouseleave="material.src: #textureImage1"
+        animation="property: rotation; to: 360 360 0; easing: linear; loop: true; dur: 10000"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="2 1 3.5"
+        event-set__click="material.color: white; scale: 1 1 1; material.src: #textureImage2"
+        animation="property: rotation; to: 360 360 0; easing: linear; loop: true; dur: 9000"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="-3 4 5.5"
+        event-set__click="material.color: white; scale: 1 1 1; material.src: #textureImage2"
+        animation="property: rotation; to: 360 360 0; easing: linear; loop: true; dur: 10000"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="-2.5 2.2 5.5"
+        event-set__click="material.color: white; scale: 1 1 1; material.src: #textureImage2"
+        event-set__mouseenter="material.color: white; material.src: #textureImage6"
+        event-set__mouseleave="material.src: #textureImage1"
+        animation="property: rotation; to: 360 360 0; easing: linear; loop: true; dur: 10000"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="-2 1 3"
+        event-set__click="material.color: white; scale: 1 1 1; material.src: #textureImage2"
+        animation="property: rotation; to: 360 360 0; easing: linear; loop: true; dur: 10000"
+      ></a-box>
+
+      
+      <!--Further boxes created to add to the background-->
+      
+       <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="3.5 0.5 -8"
+      ></a-box>
+       <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="3.5 1.5 -8"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="2.5 0.5 -8"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="-3.5 0.5 -8"
+      ></a-box>
+       <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="-3.5 1.5 -8"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="-2.5 0.5 -8"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="-3.5 0.5 -6"
+      ></a-box>
+      <a-box
+        src="https://cdn.glitch.global/4021f23f-957c-4f08-9605-77e08afcbc5b/box-texture.png?v=1687970121003"
+        position="3.5 0.5 -6"
+      ></a-box>
+      
+      <script>
+        
+        <!--Set Font Family' button click event handler function-->
+        
+        function setFontFamily() {
+        <!--all text elements-->
+          const text1 = document.getElementById("text1");
+          const text2 = document.getElementById("text2");
+          const text3 = document.getElementById("text3");
+          const text4 = document.getElementById("text4");
+
+        <!--Set the font-family property using the style.fontFamily property-->
+          text1.style.fontFamily = "Arial";
+          text2.style.fontFamily = "cursive";
+          text3.style.fontFamily = "Helvetica, sans-serif";
+          text4.style.fontFamily = "Georgia, serif";
+        }
+      </script>
+
+      <!-- Text geometry used to display riddle in sky-->
+      
+      <a-assets>
+        <a-asset-item
+          id="text1"
+          src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"
+        ></a-asset-item>
+      </a-assets>
+
+      <a-entity
+        text-geometry="value:  A glowing guide in the dead of night,; font: #text1"
+        material="color: black"
+        position="-6.3 5.5 -4"
+      ></a-entity>
+      <a-entity
+        text-geometry="value: Switch me on, and I'll shine so bright.; font: #text1"
+        material="color: black"
+        position="-5.6 4.5 -4"
+      ></a-entity>
+
+      <a-entity
+        text-geometry="value: A genie's home, what am I?; font: #text1"
+        material="color: black"
+        position="-4.6 3.5 -4"
+      ></a-entity>
+
+      
+     <!-- Basic cursor set for selecting and highlighting objects-->
+
+      <a-camera><a-cursor></a-cursor></a-camera>
+
+      <a-plane
+        src="https://cdn.glitch.me/4021f23f-957c-4f08-9605-77e08afcbc5b/Country%2002.png?v=1687619672786"
+        rotation="-90 0 0"
+        height="20"
+        width="10"
+      ></a-plane>
+
+     <!-- Light set for basic reflections and refactoring-->
+
+      <a-light type="ambient" color="#445451"></a-light>
+      <a-light type="point" intensity="1" position="4 4 2"></a-light>
+    </a-scene>
+  </body>
+</html>
