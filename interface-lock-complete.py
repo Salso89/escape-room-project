@@ -13,8 +13,8 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 #This sets up the GPIO 18 pin as an output pin
 GPIO.setup(18, GPIO.OUT)
-#Turns Relay On. Brings Voltage to Min GPIO can output ~0V.
-GPIO.output(18, 0)
+#Turns Relay On. Brings Voltage to Min GPIO can output ~0V. (Sets lock)
+GPIO.output(18, 1)
 
 sg.theme('DarkAmber')
 
@@ -79,8 +79,8 @@ while True:
             window['Number3'].update('A')
             window['Number4'].update('R')
             
-            #This Turns Relay Off. Brings Voltage to Max GPIO can output ~3.3V
-            GPIO.output(18, 1)
+            #This Turns Relay Off. Brings Voltage to Max GPIO can output ~3.3V (Opens lock)
+            GPIO.output(18, 0)
 
             #The for loop will iterate through each button and remove the visible button from the working UI upon completion to prevent further activity
             for buttonKeys in range(5): 
@@ -105,6 +105,10 @@ while True:
                     window['Number2'].update('E')
                     window['Number3'].update('A')
                     window['Number4'].update('R')
+                    
+                    #This Turns Relay Off. Brings Voltage to Max GPIO can output ~3.3V (Opens lock)
+                    GPIO.output(18, 0)
+                    
                     for buttonKeys in range(5):
                      window['Button{}'.format(buttonKeys)].update(visible=False)
         else:
@@ -126,6 +130,10 @@ while True:
                     window['Number2'].update('E')
                     window['Number3'].update('A')
                     window['Number4'].update('R')
+                    
+                    #This Turns Relay Off. Brings Voltage to Max GPIO can output ~3.3V (Opens lock)
+                    GPIO.output(18, 0)
+                    
                     for buttonKeys in range(5):
                      window['Button{}'.format(buttonKeys)].update(visible=False)
         else:
@@ -146,6 +154,10 @@ while True:
                     window['Number2'].update('E')
                     window['Number3'].update('A')
                     window['Number4'].update('R')
+                    
+                    #This Turns Relay Off. Brings Voltage to Max GPIO can output ~3.3V (Opens lock)
+                    GPIO.output(18, 0)
+                    
                     for buttonKeys in range(5):
                      window['Button{}'.format(buttonKeys)].update(visible=False)
         else:
@@ -166,6 +178,10 @@ while True:
                     window['Number2'].update('E')
                     window['Number3'].update('A')
                     window['Number4'].update('R')
+                    
+                     #This Turns Relay Off. Brings Voltage to Max GPIO can output ~3.3V (Opens lock)
+                    GPIO.output(18, 0)
+                    
                     for buttonKeys in range(5):
                      window['Button{}'.format(buttonKeys)].update(visible=False)
 
