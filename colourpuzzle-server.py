@@ -41,7 +41,7 @@ server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Bind the socket to a specific address and port (replace 'SERVER_IP' and 'SERVER_PORT' with the actual IP and port you want to use)
 server_ip = '192.168.0.201'
-server_port = 65438
+server_port = 65432
 server_socket.bind((server_ip, server_port))
 
 # Listen for incoming connections (1 connection in the queue)
