@@ -40,8 +40,8 @@ numbers = [0, 0, 0, 0, 0]
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Bind the socket to a specific address and port (replace 'SERVER_IP' and 'SERVER_PORT' with the actual IP and port you want to use)
-server_ip = '192.168.0.201'
-server_port = 65432
+server_ip = '127.0.0.1'
+server_port = 65434
 server_socket.bind((server_ip, server_port))
 
 # Listen for incoming connections (1 connection in the queue)
@@ -77,9 +77,9 @@ def clearDisplay(strip, wait_ms=20):
         strip.show()
         time.sleep(wait_ms/1000.0)
 
-def led_animation():
+def led_animation(stop_flag):
     try:
-        while True:
+        while not stop_flag.is_set():
             for i in range(len(code)):
                 color = code[i][0]  # Get the color number from the code
                 rgb_color = Color(0, 0, 0)  # Initialize the color as black (off)
@@ -127,6 +127,7 @@ def socket_communication():
         if functools.reduce(lambda x, y: x and y, map(lambda p, q: p == q[0], numbers, code), True):
             print("Numbers and code are the same")
             GPIO.output(12, 0)  # This Turns Relay Off. Brings Voltage to Max GPIO can output ~3.3V (Opens lock)
+            stop_led_animation.set()
             break
         else:
             print("Numbers and code are not the same")
@@ -138,8 +139,11 @@ def run_socket_communication():
     t1 = threading.Thread(target=socket_communication)
     t1.start()
 
-def run_led_animation():
-    t2 = threading.Thread(target=led_animation)
+stop_led_animation = threading.Event()
+
+
+def run_led_animation(stop_flag):
+    t2 = threading.Thread(target=led_animation, args=(stop_flag,))
     t2.start()
 
 if __name__ == '__main__':
@@ -157,7 +161,7 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
 
     run_socket_communication()
-    run_led_animation()
+    run_led_animation(stop_led_animation)
 
     try:
         while True:
