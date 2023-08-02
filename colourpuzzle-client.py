@@ -11,12 +11,13 @@ numbers = [0,0,0,0,0] # Numbers that are initially displayed on the UI are rando
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Connect to the server (replace 'SERVER_IP' and 'SERVER_PORT' with the actual IP and port of the server)
-server_ip = '192.168.0.201'
-server_port = 65432
+server_ip = '127.0.0.1'
+server_port = 65434
 client_socket.connect((server_ip, server_port))
 
 # Layout of the UI is established using a series of container objects called frames that have been called using the PySimpleGUI import
 layout = [
+    
     [sg.T('   Enter Code below ... ', font=('Krungthep', 10))],
     [
         sg.Frame('', element_justification='center', layout=[[sg.T(numbers[0], font=("Krungthep", 60), key='Number0', pad=(
@@ -30,9 +31,7 @@ layout = [
         sg.Frame('', element_justification='center', layout=[[sg.T(numbers[4], font=("Krungthep", 60), key='Number4', pad=(
             10, 10))], [sg.Button('PRESS', key="Button4", font=('Kohinoor Telugu', 10))]])
     ],
-    [
-        sg.Exit()
-    ]
+    
 ]
 
 window = sg.Window("Key Pad", layout, size=(480, 320), element_justification='center', finalize=True)
